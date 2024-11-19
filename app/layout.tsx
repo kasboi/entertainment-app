@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { BookmarkIcon, TvIcon, HomeIcon } from "@heroicons/react/20/solid";
-import { FilmIcon } from "@heroicons/react/24/outline";
+import { BookmarkIcon, HomeIcon } from "@heroicons/react/20/solid";
 
 import { Inter } from "next/font/google";
 import Link from "next/link";
