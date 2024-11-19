@@ -19,3 +19,22 @@ body {
   background: var(--background);
   /* font-family: Arial, Helvetica, sans-serif; */
 }
+
+/* styles.css or component-specific CSS */
+.custom-scrollbar {
+  scrollbar-width: thin; /* for Firefox */
+  scrollbar-color: #888 #333; /* for Firefox */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 2px; /* for Chrome, Safari, and Edge */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888; /* for Chrome, Safari, and Edge */
+  border-radius: 10px; /* for Chrome, Safari, and Edge */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #333; /* for Chrome, Safari, and Edge */
+}
