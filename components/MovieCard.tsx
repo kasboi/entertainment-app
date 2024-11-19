@@ -1,8 +1,5 @@
-import { Suspense } from "react";
-import CardLoading from "./CardLoading";
 import Image from "next/image";
-// import { FilmIcon } from "@heroicons/react/24/outline";
-import { FilmIcon } from "@heroicons/react/24/solid";
+
 import { ClockIcon, StarIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 
@@ -35,7 +32,7 @@ export default async function MovieCard({
         />
         <div className="flex justify-between items-center px-4 py-6 bg-black/45 absolute bottom-0 w-full">
           <div className="flex flex-col gap-2">
-            <h2 className="text-lg sm:text-2xl font-medium">{title}</h2>
+            <h2 className="text-lg sm:text-xl font-medium">{title}</h2>
             <div className="flex items-center gap-2 text-lg font-light">
               <ClockIcon className="size-4 sm:size-6" />
               <span className="font-medium text-sm sm:text-base">

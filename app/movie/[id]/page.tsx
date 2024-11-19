@@ -33,24 +33,26 @@ export default async function Page({
       Authorization: "Bearer " + process.env.TMDB_TOKEN,
     },
   };
-
+  // FETCH MOVIE DETAILS
   const movieDetails = await fetch(
     `https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`,
     options,
   );
   const movieData: ApiResponse = await movieDetails.json();
 
+  // FETCH MOVIE CASTS
   const credits = await fetch(
     `https://api.themoviedb.org/3/movie/${movie_id}/credits?language=en-US`,
     options,
   );
   const creditsData: TypeCredits = await credits.json();
 
-  const poster_img = `https://image.tmdb.org/t/p/w500/${movieData.poster_path}`;
+  // EXTRACT POSTER IMAGE
+  const poster_img = `https://image.tmdb.org/t/p/w780/${movieData.poster_path}`;
 
   return (
-    <div className="max-w-screen-sm md:max-w-screen-md md:grid md:grid-flow-col md:gap-4 md:items-center mx-auto border-2 border-blue-100/40 rounded-md px-4 py-2">
-      <div className="max-w-56 mx-auto">
+    <div className="max-w-screen-sm md:max-w-screen-xl lg:grid lg:grid-flow-col lg:gap-6 lg:items-center mx-auto border-2 border-blue-100/40 rounded-md px-4 py-2 md:py-6 lg:py-8">
+      <div className="max-w-56 md:max-w-sm lg:max-w-max mx-auto">
         <Image
           src={poster_img}
           alt="poster image"

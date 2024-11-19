@@ -22,14 +22,14 @@ export default async function Home() {
       <form className="relative">
         <input
           type="text"
-          className="w-full py-3.5 pl-12 rounded-lg bg-slate-800"
-          placeholder="Filter"
+          className="w-full py-3.5 pl-12 rounded-lg bg-slate-700/70 border-2 border-slate-900"
+          placeholder="Filter movie list"
         />
         <MagnifyingGlassIcon className="size-6 absolute top-3.5 left-3" />
       </form>
       <h1 className="text-3xl my-4">Popular Movies</h1>
       {/* CARD */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 custom-scrollbar rounded-lg">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-screen-lg mx-auto custom-scrollbar rounded-lg">
         {data.results.map((result) => (
           <MovieCard
             key={result.id}
