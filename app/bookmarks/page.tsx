@@ -3,10 +3,10 @@ import MovieCard from "@/components/MovieCard";
 import { LocalstorageType, MovieCardType } from "@/types/ApiResponse";
 import { useEffect, useState } from "react";
 
-export default function page() {
+export default function Page() {
   const [movies, setMovies] = useState<MovieCardType[]>();
   useEffect(() => {
-    let bookmarked = localStorage.getItem("bookmarked_movies");
+    const bookmarked = localStorage.getItem("bookmarked_movies");
     if (bookmarked) {
       const parsed_bookmark: LocalstorageType = JSON.parse(bookmarked);
       const movies_details = Object.keys(parsed_bookmark).map(

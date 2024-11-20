@@ -16,10 +16,10 @@ export default function MovieCard({
 }: MovieCardType) {
   const URL = `https://image.tmdb.org/t/p/w780/${imgSrc}`;
 
-  const [toggled, setToggled] = useState<Boolean>(false);
+  const [toggled, setToggled] = useState<boolean>(false);
 
   useEffect(() => {
-    let bookmarked = localStorage.getItem("bookmarked_movies");
+    const bookmarked = localStorage.getItem("bookmarked_movies");
     if (bookmarked) {
       const parsed_bookmark: LocalstorageType = JSON.parse(bookmarked);
       if (parsed_bookmark[id]) {
@@ -45,7 +45,7 @@ export default function MovieCard({
       container[id] = movieDetails;
 
       // Bookmarked movies
-      let bookmark = localStorage.getItem("bookmarked_movies");
+      const bookmark = localStorage.getItem("bookmarked_movies");
       if (bookmark) {
         const parsed_bookmark: LocalstorageType = JSON.parse(bookmark);
         const newBookmark = { ...parsed_bookmark, ...container };
@@ -57,7 +57,7 @@ export default function MovieCard({
       console.log("To be deleted");
 
       // Bookmarked movies
-      let bookmark = localStorage.getItem("bookmarked_movies");
+      const bookmark = localStorage.getItem("bookmarked_movies");
       if (bookmark) {
         const parsed_bookmark: LocalstorageType = JSON.parse(bookmark);
         delete parsed_bookmark[id];
