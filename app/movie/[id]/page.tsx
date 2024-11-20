@@ -56,16 +56,29 @@ export default async function Page({
     return creditsData;
   }
 
-  const [movieData, creditsData] = await Promise.all([
+  // FETCH MOVIE BACKDROPS
+  async function fetchBackdrops() {
+    const backdrops = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie_id}/images`,
+      options,
+    );
+    const backdropData = await backdrops.json();
+    return backdropData.backdrops;
+  }
+
+  const [movieData, creditsData, backdropData] = await Promise.all([
     fetchMovieDetails(),
     fetchCredits(),
+    fetchBackdrops(),
   ]);
+
+  console.log(backdropData);
 
   // EXTRACT POSTER IMAGE
   const poster_img = `https://image.tmdb.org/t/p/w780/${movieData.poster_path}`;
 
   return (
-    <div className="max-w-screen-sm md:max-w-screen-xl lg:grid lg:grid-flow-col lg:gap-6 lg:items-center mx-auto border-2 border-blue-100/40 rounded-md px-4 py-2 md:py-6 md:px-8 lg:py-8">
+    <div className="max-w-screen-sm md:max-w-screen-xl lg:grid lg:grid-cols-2 lg:items-center lg:gap-6 mx-auto border-2 border-blue-100/40 rounded-md px-4 py-2 md:py-6 md:px-8 lg:py-8">
       <div className="max-w-56 md:max-w-sm lg:max-w-max mx-auto">
         <Image
           src={poster_img}
@@ -84,7 +97,7 @@ export default async function Page({
             <span>{movieData.vote_average.toFixed(2)}</span>
           </div>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-1 flex-wrap">
           {movieData.genres.map((item) => {
             if (typeof item !== "number") {
               return (
@@ -100,9 +113,9 @@ export default async function Page({
         </div>
         <p className="text-sm">{movieData.overview}</p>
         <div>
-          <span className="inline-block uppercase mb-2">Cast</span>
+          <span className="inline-block text-xl uppercase my-2">Cast</span>
           <div className="flex flex-wrap gap-2">
-            {Array.from({ length: 5 }).map((item, index) => (
+            {Array.from({ length: 8 }).map((item, index) => (
               <span
                 key={creditsData.cast[index].id}
                 className="inline-block bg-slate-900 rounded-2xl px-4 py-1 text-sm"
@@ -111,6 +124,24 @@ export default async function Page({
               </span>
             ))}
           </div>
+        </div>
+      </div>
+      <div className="col-span-2">
+        <span className="inline-block text-xl uppercase my-2">Images</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {Array.from({ length: 10 }).map((item, i) => {
+            const image = backdropData[i];
+            return (
+              <Image
+                key={image.file_path}
+                src={`https://image.tmdb.org/t/p/w780/${image.file_path}`}
+                alt="backdrop photo"
+                width={image.width}
+                height={image.height}
+                className="rounded-sm"
+              />
+            );
+          })}
         </div>
       </div>
     </div>
