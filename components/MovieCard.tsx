@@ -71,14 +71,14 @@ export default function MovieCard({
 
   return (
     <div className="rounded-lg relative overflow-hidden lg:transition-all lg:duration-300 lg:hover:scale-110">
-      <Image
-        src={URL}
-        alt="poster image"
-        width={750}
-        height={1125}
-        className="w-full"
-      />
       <Link href={`/movie/${id}`}>
+        <Image
+          src={URL}
+          alt="poster image"
+          width={750}
+          height={1125}
+          className="w-full"
+        />
         <div className="flex flex-wrap justify-between items-center px-2 py-4 bg-black/45 absolute bottom-0 w-full">
           <div className="flex flex-col gap-2">
             <h2 className="sm:text-lg font-medium">{title}</h2>
