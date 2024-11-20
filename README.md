@@ -60,6 +60,7 @@ This project is a responsive web application that interacts with [The Movie Data
 
    - Used **Tailwind CSS** for rapid UI development with a utility-first approach.
    - Ensured responsive design by leveraging Tailwind's breakpoint utilities.
+   - Shimmer effect to indicate data fetching.
 
 3. **State Management**:
 
