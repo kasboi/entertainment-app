@@ -44,10 +44,10 @@ export default function RootLayout({
               className="flex gap-2 items-end transition-all active:scale-90"
             >
               <BookmarkIcon className="size-8" />
-              <span>Bookmarks</span>
+              <span>Favourites</span>
             </Link>
           </nav>
-          <main className="col-span-full bg-slate-800 px-6 py-4">
+          <main className="col-span-full bg-slate-800 px-6 py-4 min-h-svh">
             {children}
           </main>
         </body>

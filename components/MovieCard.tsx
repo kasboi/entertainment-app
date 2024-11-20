@@ -79,19 +79,19 @@ export default function MovieCard({
         className="w-full"
       />
       <Link href={`/movie/${id}`}>
-        <div className="flex justify-between items-center px-4 py-6 bg-black/45 absolute bottom-0 w-full">
+        <div className="flex flex-wrap justify-between items-center px-2 py-4 bg-black/45 absolute bottom-0 w-full">
           <div className="flex flex-col gap-2">
-            <h2 className="text-lg sm:text-xl font-medium">{title}</h2>
+            <h2 className="sm:text-lg font-medium">{title}</h2>
             <div className="flex items-center gap-2 text-lg font-light">
-              <ClockIcon className="size-4 sm:size-6" />
+              <ClockIcon className="size-4 md:size-6" />
               <span className="font-medium text-sm sm:text-base">
                 {release_date}
               </span>
             </div>
           </div>
           <div className="flex gap-2 items-center">
-            <StarIcon className="size-6 text-yellow-500" />
-            <span className="text-lg sm:text-xl font-medium">
+            <StarIcon className="size-4 sm:size-6 text-yellow-500" />
+            <span className="text-sm md:text-lg font-medium">
               {rating.toFixed(2)}
             </span>
           </div>

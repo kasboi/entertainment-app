@@ -1,4 +1,6 @@
+import { Card } from "@/components/ShimmerCard";
 import { ApiResponse } from "@/types/ApiResponse";
+import { StarIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
 export default async function Page({
@@ -33,6 +35,7 @@ export default async function Page({
       Authorization: "Bearer " + process.env.TMDB_TOKEN,
     },
   };
+
   // FETCH MOVIE DETAILS
   async function fetchMovieDetails() {
     const movieDetails = await fetch(
@@ -62,7 +65,7 @@ export default async function Page({
   const poster_img = `https://image.tmdb.org/t/p/w780/${movieData.poster_path}`;
 
   return (
-    <div className="max-w-screen-sm md:max-w-screen-xl lg:grid lg:grid-flow-col lg:gap-6 lg:items-center mx-auto border-2 border-blue-100/40 rounded-md px-4 py-2 md:py-6 lg:py-8">
+    <div className="max-w-screen-sm md:max-w-screen-xl lg:grid lg:grid-flow-col lg:gap-6 lg:items-center mx-auto border-2 border-blue-100/40 rounded-md px-4 py-2 md:py-6 md:px-8 lg:py-8">
       <div className="max-w-56 md:max-w-sm lg:max-w-max mx-auto">
         <Image
           src={poster_img}
@@ -70,10 +73,17 @@ export default async function Page({
           width={500}
           height={750}
           priority={true}
+          className="rounded-md"
         />
       </div>
       <div className="flex flex-col gap-4 md:gap-6 py-4">
-        <h2 className="text-3xl">{movieData.title}</h2>
+        <div className="flex justify-between items-center">
+          <h2 className="text-3xl">{movieData.title}</h2>
+          <div className="flex items-center gap-4">
+            <StarIcon className="size-6 text-yellow-600" />
+            <span>{movieData.vote_average.toFixed(2)}</span>
+          </div>
+        </div>
         <div className="flex gap-1">
           {movieData.genres.map((item) => {
             if (typeof item !== "number") {

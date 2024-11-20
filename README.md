@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **TMDb Movie Explorer**
 
-## Getting Started
+## **Overview**
 
-First, run the development server:
+This project is a responsive web application that interacts with [The Movie Database (TMDb) API](https://developers.themoviedb.org/3) to display popular movies, manage favorites, and view detailed movie information. It is built with **Next.js**, **TypeScript**, and **Tailwind CSS**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## **Getting Started**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Prerequisites**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Node.js](https://nodejs.org/) (v16+)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- TMDb API Key: Sign up for an API key from [TMDb API](https://developers.themoviedb.org/3/getting-started/introduction).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Installation**
 
-## Learn More
+1. Clone the repository:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/kasboi/entertainment-app.git
+   cd entertainment-app
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Install dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-## Deploy on Vercel
+3. Set up environment variables:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   - Create a `.env` file in the root directory.
+   - Add your TMDb API key:
+     ```env
+     TMDB_TOKEN=your_api_key_here
+     ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Run the application:
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Open in browser: [http://localhost:3000](http://localhost:3000)
+
+## **Design Decisions**
+
+1. **Framework**:
+
+   - Chose **Next.js** for its server-side rendering (SSR) capabilities and built-in routing.
+   - Client-side rendering (CSR) was used on the homepage to tap into react-query infinite query capabilities.
+   - Server side rendering was used on the `Movie` and `Favourites` page.
+   - Route handler to handle data fetching on client side to prevent auth token leak
+
+2. **Styling**:
+
+   - Used **Tailwind CSS** for rapid UI development with a utility-first approach.
+   - Ensured responsive design by leveraging Tailwind's breakpoint utilities.
+
+3. **State Management**:
+
+   - Used `useState` and `localStorage` for managing favorites to keep the data local.
+
+4. **Infinite Scrolling**:
+
+   - Used `react-query` for data fetching and caching.
+   - Implemented infinite scrolling with `useInfiniteQuery` for better user experience.
+
+5. **TypeScript**:
+
+   - Added strict types for API responses and component props, reducing runtime errors and improving maintainability.
+
+6. **Trade-offs**:
+   - **Local Filtering**: Search functionality filters fetched movies locally to avoid redundant API calls, but this may not scale for very large datasets.
+   - **API Limitations**: TMDb API sends duplicate movie data in some cases, which is handled client-side with deduplication.
