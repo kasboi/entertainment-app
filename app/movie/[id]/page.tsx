@@ -72,8 +72,6 @@ export default async function Page({
     fetchBackdrops(),
   ]);
 
-  console.log(backdropData);
-
   // EXTRACT POSTER IMAGE
   const poster_img = `https://image.tmdb.org/t/p/w780/${movieData.poster_path}`;
 
@@ -115,14 +113,19 @@ export default async function Page({
         <div>
           <span className="inline-block text-xl uppercase my-2">Cast</span>
           <div className="flex flex-wrap gap-2">
-            {Array.from({ length: 8 }).map((item, index) => (
-              <span
-                key={creditsData.cast[index].id}
-                className="inline-block bg-slate-900 rounded-2xl px-4 py-1 text-sm"
-              >
-                {creditsData.cast[index].name}
-              </span>
-            ))}
+            {Array.from({ length: 10 }).map((item, index) => {
+              const castInfo = creditsData.cast[index];
+              if (castInfo) {
+                return (
+                  <span
+                    key={castInfo.id}
+                    className="inline-block bg-slate-900 rounded-2xl px-4 py-1 text-sm"
+                  >
+                    {castInfo.name}
+                  </span>
+                );
+              }
+            })}
           </div>
         </div>
       </div>
@@ -131,16 +134,18 @@ export default async function Page({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Array.from({ length: 10 }).map((item, i) => {
             const image = backdropData[i];
-            return (
-              <Image
-                key={image.file_path}
-                src={`https://image.tmdb.org/t/p/w780/${image.file_path}`}
-                alt="backdrop photo"
-                width={image.width}
-                height={image.height}
-                className="rounded-sm"
-              />
-            );
+            if (image) {
+              return (
+                <Image
+                  key={image.file_path}
+                  src={`https://image.tmdb.org/t/p/w780/${image.file_path}`}
+                  alt="backdrop photo"
+                  width={image.width}
+                  height={image.height}
+                  className="rounded-sm"
+                />
+              );
+            }
           })}
         </div>
       </div>
