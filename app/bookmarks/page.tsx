@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function Page() {
   const [movies, setMovies] = useState<TypeMovieCard[]>();
+  const [trigger, setTrigger] = useState(0);
   useEffect(() => {
     const bookmarked = localStorage.getItem("bookmarked_movies");
     if (bookmarked) {
@@ -15,7 +16,7 @@ export default function Page() {
       setMovies(movies_details);
       console.log(movies_details);
     }
-  }, []);
+  }, [trigger]);
 
   // Render when the localStorage property is null or empty
   if (!movies || !movies.length) {
@@ -32,14 +33,15 @@ export default function Page() {
   return (
     <div className="py-4 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-screen-lg mx-auto custom-scrollbar rounded-lg">
       {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          id={movie.id}
-          imgSrc={movie.imgSrc}
-          title={movie.title}
-          release_date={movie.release_date}
-          rating={movie.rating}
-        />
+        <div onClick={() => setTrigger(trigger + 1)} key={movie.id}>
+          <MovieCard
+            id={movie.id}
+            imgSrc={movie.imgSrc}
+            title={movie.title}
+            release_date={movie.release_date}
+            rating={movie.rating}
+          />
+        </div>
       ))}
     </div>
   );
