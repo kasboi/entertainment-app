@@ -1,5 +1,5 @@
 import { Card } from "@/components/ShimmerCard";
-import { ApiResponse } from "@/types/ApiResponse";
+import { TypeMovieDetails, TypeMovieCredits } from "@/types/ApiResponseTypes";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
@@ -9,24 +9,6 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const movie_id = (await params).id;
-
-  type TypeCredits = {
-    id: number;
-    cast: {
-      adult: boolean;
-      gender: number;
-      id: number;
-      known_for_department: string;
-      name: string;
-      original_name: string;
-      popularity: number;
-      profile_path: string;
-      cast_id: number;
-      character: string;
-      credit_id: string;
-      order: number;
-    }[];
-  };
 
   const options = {
     method: "GET",
@@ -42,7 +24,7 @@ export default async function Page({
       `https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`,
       options,
     );
-    const movieData: ApiResponse = await movieDetails.json();
+    const movieData: TypeMovieDetails = await movieDetails.json();
     return movieData;
   }
 
@@ -52,7 +34,7 @@ export default async function Page({
       `https://api.themoviedb.org/3/movie/${movie_id}/credits?language=en-US`,
       options,
     );
-    const creditsData: TypeCredits = await credits.json();
+    const creditsData: TypeMovieCredits = await credits.json();
     return creditsData;
   }
 

@@ -1,9 +1,8 @@
 "use client";
 
-import CardLoading from "@/components/CardLoading";
 import MovieCard from "@/components/MovieCard";
 import ShimmerCard from "@/components/ShimmerCard";
-import { PopularMovieResponse } from "@/types/ApiResponse";
+import { TypePopularMovie } from "@/types/ApiResponseTypes";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -16,7 +15,7 @@ export default function Home() {
   // Fetch function
   async function fetchPopularMovies({ pageParam }: { pageParam: number }) {
     const res = await fetch(`/api/search?query=${pageParam}`);
-    const data: PopularMovieResponse = await res.json();
+    const data: TypePopularMovie = await res.json();
     return data;
   }
 

@@ -1,4 +1,4 @@
-import { PopularMovieResponse } from "@/types/ApiResponse";
+import { TypePopularMovie } from "@/types/ApiResponseTypes";
 import { type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${pageParam}`,
     options,
   );
-  const data: PopularMovieResponse = await res.json();
+  const data: TypePopularMovie = await res.json();
 
   return Response.json(data);
 }

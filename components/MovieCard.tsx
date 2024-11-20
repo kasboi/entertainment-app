@@ -5,7 +5,7 @@ import Link from "next/link";
 import { BookmarkIcon } from "@heroicons/react/24/outline";
 import { BookmarkIcon as BookmarkedIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
-import { MovieCardType, LocalstorageType } from "@/types/ApiResponse";
+import { TypeMovieCard, LocalstorageType } from "@/types/ApiResponseTypes";
 
 export default function MovieCard({
   id,
@@ -13,7 +13,7 @@ export default function MovieCard({
   title,
   release_date,
   rating,
-}: MovieCardType) {
+}: TypeMovieCard) {
   const URL = `https://image.tmdb.org/t/p/w780/${imgSrc}`;
 
   const [toggled, setToggled] = useState<boolean>(false);
@@ -41,7 +41,7 @@ export default function MovieCard({
         rating,
       };
 
-      const container: Record<number, MovieCardType> = {};
+      const container: Record<number, TypeMovieCard> = {};
       container[id] = movieDetails;
 
       // Bookmarked movies

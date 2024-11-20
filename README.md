@@ -8,7 +8,7 @@ This project is a responsive web application that interacts with [The Movie Data
 
 ### **Prerequisites**
 
-- [Node.js](https://nodejs.org/) (v16+)
+- [Node.js](https://nodejs.org/) (v20+)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - TMDb API Key: Sign up for an API key from [TMDb API](https://developers.themoviedb.org/3/getting-started/introduction).
 
@@ -25,6 +25,8 @@ This project is a responsive web application that interacts with [The Movie Data
 
    ```bash
    npm install
+   # or (due to react-query and react-intersection-observer not fully compatible with react v19+)
+   npm install --force
    # or
    yarn install
    ```

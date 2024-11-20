@@ -1,4 +1,4 @@
-export type ApiResponse = {
+export type TypeMovieDetails = {
   adult: boolean;
   backdrop_path: string;
   genres: number[] | { id: number; name: string }[];
@@ -15,14 +15,32 @@ export type ApiResponse = {
   vote_count: number;
 };
 
-export type PopularMovieResponse = {
+export type TypeMovieCredits = {
+  id: number;
+  cast: {
+    adult: boolean;
+    gender: number;
+    id: number;
+    known_for_department: string;
+    name: string;
+    original_name: string;
+    popularity: number;
+    profile_path: string;
+    cast_id: number;
+    character: string;
+    credit_id: string;
+    order: number;
+  }[];
+};
+
+export type TypePopularMovie = {
   page: number;
-  results: ApiResponse[];
+  results: TypeMovieDetails[];
   total_pages: number;
   total_results: number;
 };
 
-export type MovieCardType = {
+export type TypeMovieCard = {
   id: number;
   imgSrc: string;
   title: string;
@@ -31,5 +49,5 @@ export type MovieCardType = {
 };
 
 export type LocalstorageType = {
-  [id: string]: MovieCardType;
+  [id: string]: TypeMovieCard;
 };

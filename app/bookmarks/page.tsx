@@ -1,10 +1,10 @@
 "use client";
 import MovieCard from "@/components/MovieCard";
-import { LocalstorageType, MovieCardType } from "@/types/ApiResponse";
+import { LocalstorageType, TypeMovieCard } from "@/types/ApiResponseTypes";
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const [movies, setMovies] = useState<MovieCardType[]>();
+  const [movies, setMovies] = useState<TypeMovieCard[]>();
   useEffect(() => {
     const bookmarked = localStorage.getItem("bookmarked_movies");
     if (bookmarked) {
