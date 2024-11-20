@@ -14,3 +14,22 @@ export type ApiResponse = {
   vote_average: number;
   vote_count: number;
 };
+
+export type PopularMovieResponse = {
+  page: number;
+  results: ApiResponse[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type MovieCardType = {
+  id: number;
+  imgSrc: string;
+  title: string;
+  release_date: string;
+  rating: number;
+};
+
+export type LocalstorageType = {
+  [id: string]: MovieCardType;
+};
