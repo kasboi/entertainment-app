@@ -9,20 +9,8 @@ import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 export default function Home() {
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NmNkZjY5YWU4ZGU1ZDU5Y2Q0MDM3MjIwZmE3YTIwYiIsIm5iZiI6MTczMTk2Mzg5OS44MTA4NjIsInN1YiI6IjY3M2I5ZWNjOWIwNzJhYmE4YzgyNWQ4YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Nhb5ka_00DKGuXFPdbpbbKqWixJkiHCrUxYP2IjgExI",
-    },
-  };
-
   async function fetchPopularMovies({ pageParam }: { pageParam: number }) {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${pageParam}`,
-      options,
-    );
+    const res = await fetch(`/api/search?query=${pageParam}`);
     const data: PopularMovieResponse = await res.json();
 
     return data;
