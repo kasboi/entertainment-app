@@ -34,18 +34,29 @@ export default async function Page({
     },
   };
   // FETCH MOVIE DETAILS
-  const movieDetails = await fetch(
-    `https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`,
-    options,
-  );
-  const movieData: ApiResponse = await movieDetails.json();
+  async function fetchMovieDetails() {
+    const movieDetails = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`,
+      options,
+    );
+    const movieData: ApiResponse = await movieDetails.json();
+    return movieData;
+  }
 
   // FETCH MOVIE CASTS
-  const credits = await fetch(
-    `https://api.themoviedb.org/3/movie/${movie_id}/credits?language=en-US`,
-    options,
-  );
-  const creditsData: TypeCredits = await credits.json();
+  async function fetchCredits() {
+    const credits = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie_id}/credits?language=en-US`,
+      options,
+    );
+    const creditsData: TypeCredits = await credits.json();
+    return creditsData;
+  }
+
+  const [movieData, creditsData] = await Promise.all([
+    fetchMovieDetails(),
+    fetchCredits(),
+  ]);
 
   // EXTRACT POSTER IMAGE
   const poster_img = `https://image.tmdb.org/t/p/w780/${movieData.poster_path}`;
