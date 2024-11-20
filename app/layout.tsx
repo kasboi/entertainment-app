@@ -22,6 +22,7 @@ export default function RootLayout({
   return (
     <QueryClientProvider client={queryClient}>
       <html lang="en" className={`${inter.variable}`}>
+        <title>Movies Explorer - TMDB API</title>
         <body className="grid grid-cols-10">
           <Navbar />
           <main className="col-span-full bg-slate-800 px-6 py-4 min-h-svh">
